@@ -24,6 +24,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Post Create View Controller
     public function create()
     {
         if(Auth::check()){
@@ -38,6 +39,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //  Post Save Controller
     public function store(Request $request)
     {
 
@@ -67,6 +70,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Post View Controller
     public function show($id)
     {
         $post = Post::find($id);
@@ -79,6 +83,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Post Edit View Controller
     public function edit($id)
     {
         // Get the resource and return with the information
@@ -98,6 +103,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Post update Controller
     public function update(Request $request, $id)
     {
         // Validate the request parameters
@@ -123,6 +129,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Post Delete Controller
     public function destroy($id)
     {
         //Find the resource

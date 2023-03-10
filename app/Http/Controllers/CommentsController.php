@@ -33,6 +33,8 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //  Comment Submition Controller
     public function store(Request $request, $post_id)
     {
 

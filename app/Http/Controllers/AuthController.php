@@ -34,6 +34,7 @@ class AuthController extends Controller
         return redirect(route('login'))->with('error', 'Login failed Access Denied');
     }
 
+    //  Register View Controller
     public function getRegister()
     {
         if(Auth::check()){
@@ -43,6 +44,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    //  Registration Controller
     public function postRegister(Request $request)
     {
         $request->validate([
@@ -60,6 +62,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // User Creation
     public function create(array $data)
     {
       return User::create([
@@ -69,15 +72,7 @@ class AuthController extends Controller
       ]);
     }
 
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('dashboard');
-        }
-
-        return redirect("login")->withSuccess('You are not allowed to access');
-    }
-
+    // Logout Controller
     public function logout() {
         Session::flush();
         Auth::logout();
