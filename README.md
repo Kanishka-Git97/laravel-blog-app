@@ -9,4 +9,8 @@
 
 ## Laravel Blog Application
 
+-Config the .env file
+-Run php artisan migrate
+-Deploy
+
 
