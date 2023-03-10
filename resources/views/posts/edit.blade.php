@@ -12,10 +12,13 @@
             <header class="mb-4 lg:mb-6 not-format">
                 <address class="flex items-center mb-6 not-italic">
                     <div class="inline-flex items-center mr-3 text-sm text-gray-900 ">
-                        <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos">
+                        <div class="mr-4 w-16 h-16 relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <span class="font-medium text-gray-600 dark:text-gray-300 uppercase">{{ Str::substr($post->user->name, 0, 2) }}</span>
+                        </div>
+
                         <div>
-                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 ">Jese Leos</a>
-                            <p class="text-base font-light text-gray-500 ">Graphic Designer, educator & CEO Flowbite</p>
+                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 ">{{ $post->user->name }}</a>
+                            <p class="text-base font-light text-gray-500 ">{{ $post->user->email }}</p>
                             <div class="flex flex-row">
                                 <p class="text-base font-light text-gray-500"><time pubdate datetime="2022-02-08" title="February 8th, 2022">{{ $post->created_at->diffForHumans() }}</time></p>
                             </div>
@@ -31,7 +34,7 @@
 
             </header>
             {{-- Body of Blog --}}
-            {{ Form::textarea('body', null, array('class'=>' w-full h-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 p-3 m-2', 'placeholder'=>'Your Post Body', 'required'=>'', 'rows'=>'30')) }}
+            {{ Form::textarea('body', null, array('class'=>'advance-texteditor w-full h-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 p-3 m-2', 'placeholder'=>'Your Post Body', 'rows'=>'15')) }}
         </article>
 
 

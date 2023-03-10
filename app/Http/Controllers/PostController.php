@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -25,7 +26,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        if(Auth::check()){
+            return view('posts.create');
+        }
+        return view('error.404');
     }
 
     /**
@@ -36,17 +40,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         // Validate the request
         $this->validate($request, array(
             'title'=> 'required|max:255',
-            'body'=>'required'
+            'body'=>'required',
+            'user_id'=>'required|integer'
         ));
         // Store the Database
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->user_id = $request->user_id;
 
         $post->save();
+        if(!$post){
+            return redirect(route('posts.create'))->with('error', 'Something went wrong Please try again');
+        }
         // Redirection
         return redirect()->route('posts.show', $post->id);
     }
@@ -72,9 +82,14 @@ class PostController extends Controller
     public function edit($id)
     {
         // Get the resource and return with the information
-        $post=Post::find($id);
-        return view('posts.edit')->with('post', $post);
+        if(Auth::check()){
+            $post=Post::find($id);
+            return view('posts.edit')->with('post', $post);
+        }
+        return view('error.404');
     }
+
+
 
     /**
      * Update the specified resource in storage.
